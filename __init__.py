@@ -1,0 +1,1 @@
+from view.welcome import Home
