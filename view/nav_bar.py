@@ -21,7 +21,15 @@ class Nav_bar(tk.Frame) :
                                     borderwidth=0,
                                     highlightthickness=0,
                                     activebackground= '#111111')
+        self.__home_image = tk.PhotoImage(file = "proto-app/view/img/home.png" )
+        self.__home_button = tk.Button(self,
+                                    image = self.__home_image,
+                                    bg = '#111111',
+                                    borderwidth=0,
+                                    highlightthickness=0,
+                                    activebackground= '#111111')
         self.__level_button.pack(side='right', expand=True)
+        self.__home_button.pack(side='right', expand=True)
         self.__concentration_button.pack(side='left', expand=True)
 
     @typechecked
@@ -31,3 +39,7 @@ class Nav_bar(tk.Frame) :
     @typechecked
     def get_level_button(self) -> tk.Button : 
         return self.__level_button
+
+    @typechecked
+    def get_home_button(self) -> tk.Button : 
+        return self.__home_button
