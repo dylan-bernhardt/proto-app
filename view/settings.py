@@ -15,7 +15,7 @@ class Settings(tk.Frame):
         
         self.__label = tk.Label(self.__frame, text="Settings", bg='#111111', fg='#343434', font=("Helvetica", 15))
         self.__label_baudrate = tk.Label(self.__frame_baudrate, text="BaudRate", bg='#111111', fg='#343434', font=("Helvetica", 15))
-        self.__entry_baudrate = ttk.Entry(self.__frame_baudrate, background="#111111", font=("Helvetica",15))
+        self.__entry_baudrate = ttk.Entry(self.__frame_baudrate, font=("Helvetica",15))
         self.__button_submit_baudrate = ttk.Button(self.__frame_baudrate, text="OK", command=self.get_baud_rate)
         
         self.__label.pack()
@@ -30,7 +30,7 @@ class Settings(tk.Frame):
     def get_baud_rate(self) -> None:
         baud_rate = self.__entry_baudrate.get()
         print("Baud rate selected :", baud_rate)
-        self.__entry_baudrate.delete(0, tk.END)
+        self.__entry_baudrate.delete(0, tk.END) 
 
 
     @typechecked
