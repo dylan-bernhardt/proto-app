@@ -7,32 +7,46 @@ class Settings(tk.Frame):
         super().__init__(master)
         self.configure(background='#111111')
 
+        self.__frame = tk.Frame(self)
+        self.__frame.configure(background="#111111")
+
         self.__loadimage = tk.PhotoImage(file = "proto-app/view/img/OK.png" )
         
-        self.__frame = tk.Frame(self)
-        self.__frame.config(background='#111111')
-        
         self.__frame_baudrate = tk.Frame(self)
-        self.__frame_baudrate.config(background='#111111')
-        
-        self.__label = tk.Label(self.__frame, text="Settings", bg='#111111', fg='#343434', font=("Helvetica", 15))
+        self.__frame_baudrate.configure(background="#111111")
         self.__label_baudrate = tk.Label(self.__frame_baudrate, text="BaudRate", bg='#111111', fg='#343434', font=("Helvetica", 15))
-        self.__entry_baudrate = ttk.Entry(self.__frame_baudrate, font=("Helvetica",15))
-        self.__button_submit_baudrate = ttk.Button(self.__frame_baudrate, text="OK", command=self.get_baud_rate, image = self.__loadimage)
-        
-        self.__label.pack()
+        self.__entry_baudrate = ttk.Entry(self.__frame_baudrate, font=("Helvetica",15), justify="center", width="8")
+
+        self.__frame_COM = tk.Frame(self)
+        self.__frame_COM.configure(background="#111111")
+        self.__label_COM = tk.Label(self.__frame_COM, text="COM", bg='#111111', fg='#343434', font=("Helvetica", 15))
+        self.__entry_COM = ttk.Entry(self.__frame_COM, font=("Helvetica",15), justify="center", width="8")
+
+        self.__button_submit = ttk.Button(self.__frame, command=self.get_all, image = self.__loadimage)      
+
         self.__label_baudrate.pack()
         self.__entry_baudrate.pack()
-        self.__button_submit_baudrate.pack()
 
-        self.__frame.pack(expand=True)
+        self.__label_COM.pack()
+        self.__entry_COM.pack()
+
+        self.__button_submit.pack()
         self.__frame_baudrate.pack(expand=True)
+        self.__frame_COM.pack(expand=True)
+
+        self.__frame.pack(padx=10, pady=10)
         
     @typechecked
-    def get_baud_rate(self) -> None:
+    def get_all(self) -> None:
         baud_rate = self.__entry_baudrate.get()
-        print("Baud rate selected :", baud_rate)
-        self.__entry_baudrate.delete(0, tk.END) 
+        COM_port = self.__entry_COM.get()
+
+        self.__entry_baudrate.delete(0, tk.END)
+        self.__entry_COM.delete(0, tk.END)
+
+        print("Baud rate selected : ", baud_rate)
+        print("COM port selected : ", COM_port)
+        print("\n\n")
 
 
     @typechecked
