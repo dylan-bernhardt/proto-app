@@ -23,7 +23,6 @@ class Settings(tk.Frame):
 
         self.__button_submit = tk.Button(self.__frame,
                                     image = self.__loadimage,
-                                    command= self.get_all,
                                     bg = '#111111',
                                     borderwidth=0,
                                     highlightthickness=0,
@@ -39,20 +38,19 @@ class Settings(tk.Frame):
         self.__frame_COM.pack(expand=True)
 
         self.__frame.pack(padx=10, pady=10)
-        
-    @typechecked
-    def get_all(self) -> None:
-        baud_rate = self.__entry_baudrate.get()
-        COM_port = self.__entry_COM.get()
 
-        self.__entry_baudrate.delete(0, tk.END)
+    @typechecked
+    def get_submit_button(self) -> tk.Button : 
+        return self.__button_submit
+
+    @typechecked
+    def get_com(self) -> str:
+        com = self.__entry_COM.get()
         self.__entry_COM.delete(0, tk.END)
-
-        print("Baud rate selected : ", baud_rate)
-        print("COM port selected : ", COM_port)
-        print("\n\n")
-
+        return com
 
     @typechecked
-    def get_value(self) -> tk.Label : 
-        return self.__value
+    def get_baudrate(self) -> int:
+        baudrate=  self.__entry_baudrate.get()
+        self.__entry_baudrate.delete(0, tk.END)
+        return int(baudrate)

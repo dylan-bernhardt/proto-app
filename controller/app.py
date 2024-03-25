@@ -1,6 +1,7 @@
 from typeguard import typechecked
 import tkinter as tk 
 from ..view import Home, Nav_bar, Level, Concentration, Settings
+from ..model import Data
 
 @typechecked
 class App(tk.Tk) :   
@@ -20,12 +21,14 @@ class App(tk.Tk) :
         self.__concentration_button = self.__nav_bar.get_concentration_button()
         self.__level_button = self.__nav_bar.get_level_button()
         self.__settings_button = self.__nav_bar.get_settings_button()
-        self
+        self.__submit_button = self.__settings.get_submit_button()
         self.__home.pack(expand=True, fill='both')
         self.__next_button.config(command= self.next_button_handler)
         self.__concentration_button.config(command= self.concentration_button_handler)
         self.__level_button.config(command= self.level_button_handler)
         self.__settings_button.config(command= self.settings_button_handler)
+        self.__submit_button.config(command = self.submit_button_handler)
+        self.__first_loop = 1
 
     @typechecked
     def next_button_handler(self) -> None: 
@@ -54,3 +57,12 @@ class App(tk.Tk) :
         self.__concentration.pack_forget()
         self.__level.pack_forget()
         self.__settings.pack(expand=True, fill='both') 
+
+    @typechecked
+    def submit_button_handler(self) -> None:
+        if self.__first_loop == 1 : 
+            self.__data = Data(self.__settings.get_com(), self.__settings.get_baudrate())
+            self.__first_loop = 0
+        self.__concentration = self.__data.get_concentration() 
+        self.__level = self.__data.get_level()
+        self.after(1000, self.submit_button_handler)
