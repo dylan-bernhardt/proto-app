@@ -6,6 +6,8 @@ class Settings(tk.Frame):
     def __init__(self, master: tk.Tk):
         super().__init__(master)
         self.configure(background='#111111')
+
+        self.__loadimage = tk.PhotoImage(file = "proto-app/view/img/OK.png" )
         
         self.__frame = tk.Frame(self)
         self.__frame.config(background='#111111')
@@ -16,7 +18,7 @@ class Settings(tk.Frame):
         self.__label = tk.Label(self.__frame, text="Settings", bg='#111111', fg='#343434', font=("Helvetica", 15))
         self.__label_baudrate = tk.Label(self.__frame_baudrate, text="BaudRate", bg='#111111', fg='#343434', font=("Helvetica", 15))
         self.__entry_baudrate = ttk.Entry(self.__frame_baudrate, font=("Helvetica",15))
-        self.__button_submit_baudrate = ttk.Button(self.__frame_baudrate, text="OK", command=self.get_baud_rate)
+        self.__button_submit_baudrate = ttk.Button(self.__frame_baudrate, text="OK", command=self.get_baud_rate, image = self.__loadimage)
         
         self.__label.pack()
         self.__label_baudrate.pack()
