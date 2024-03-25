@@ -7,6 +7,10 @@ class App(tk.Tk) :
     @typechecked
     def __init__(self)-> None :
         tk.Tk.__init__(self)
+        self.iconbitmap('proto-app/view/img/fuel_station_petrol_icon_152273.ico')
+        self.geometry('300x500')
+        self.wm_title("DyReCo")
+        self.resizable(0, 0)
         self.__home = Home(self)
         self.__nav_bar = Nav_bar(self)
         self.__level = Level(self)
