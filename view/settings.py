@@ -22,8 +22,13 @@ class Settings(tk.Frame):
         self.__label_COM = tk.Label(self.__frame_COM, text="COM", bg='#111111', fg='#343434', font=("Helvetica", 15))
         self.__entry_COM = ttk.Entry(self.__frame_COM, font=("Helvetica",15), justify="center", width="8")
 
-        self.__button_submit = ttk.Button(self.__frame, command=self.get_all, image = self.__loadimage)      
-
+        self.__button_submit = tk.Button(self.__frame,
+                                    image = self.__loadimage,
+                                    command= self.get_all,
+                                    bg = '#111111',
+                                    borderwidth=0,
+                                    highlightthickness=0,
+                                    activebackground= '#111111')
         self.__label_baudrate.pack()
         self.__entry_baudrate.pack()
 
