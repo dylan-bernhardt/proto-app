@@ -5,10 +5,11 @@ import threading
 class Data :
     @typechecked
     def __init__(self, com : str, baudrate: int) -> None: 
+        self.a= 0
         self.__concentration = 0
         self.__level = 0
         self.__ser = serial.Serial(com, baudrate, timeout=100)
-        thread = threading.Thread(target= self.read_data, args=(self.__ser))
+        thread = threading.Thread(target= self.read_data, args=(self.__ser,))
         thread.daemon = True
         thread.start()
         
@@ -19,11 +20,12 @@ class Data :
     @typechecked
     def get_level(self) -> int : 
         return self.__level
-    
+
     @typechecked
-    def read_data(self , ser) -> None :
+    def read_data(self, ser: serial.Serial) -> None :
         while True : 
-            self.__concentration = ser.readline()
+            print(ser.readline())
+            self.__concentration = int(ser.readline())   
 
 
     

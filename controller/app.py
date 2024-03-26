@@ -63,6 +63,6 @@ class App(tk.Tk) :
         if self.__first_loop == 1 : 
             self.__data = Data(self.__settings.get_com(), self.__settings.get_baudrate())
             self.__first_loop = 0
-        self.__concentration = self.__data.get_concentration() 
-        self.__level = self.__data.get_level()
-        self.after(1000, self.submit_button_handler)
+        self.__concentration_mesured = self.__data.get_concentration() 
+        self.__concentration.set_concentration(self.__concentration_mesured)
+        self.after(100, self.submit_button_handler)
