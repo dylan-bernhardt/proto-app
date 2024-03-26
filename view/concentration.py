@@ -61,7 +61,7 @@ class Concentration(tk.Frame) :
     @typechecked
     def set_concentration(self, concentration_measured : int, min : int, max : int )-> None: 
         percentage = (concentration_measured - min)*100/(max - min)
-        self.__value.config(text=concentration_measured)
+        self.__value.config(text=percentage)
         self.__color = Color.choose_color(percentage)
         self.__canvas.delete("all")
         variable_angle = percentage * 1.8
