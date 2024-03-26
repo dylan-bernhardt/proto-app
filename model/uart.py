@@ -24,7 +24,6 @@ class Data :
     @typechecked
     def read_data(self, ser: serial.Serial) -> None :
         while True : 
-            print(ser.readline())
             self.__concentration = int(ser.readline())   
 
 

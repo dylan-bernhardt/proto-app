@@ -22,13 +22,19 @@ class App(tk.Tk) :
         self.__level_button = self.__nav_bar.get_level_button()
         self.__settings_button = self.__nav_bar.get_settings_button()
         self.__submit_button = self.__settings.get_submit_button()
+        self.__button_min = self.__concentration.get_min_button()
+        self.__button_max = self.__concentration.get_max_button()
         self.__home.pack(expand=True, fill='both')
         self.__next_button.config(command= self.next_button_handler)
         self.__concentration_button.config(command= self.concentration_button_handler)
         self.__level_button.config(command= self.level_button_handler)
         self.__settings_button.config(command= self.settings_button_handler)
         self.__submit_button.config(command = self.submit_button_handler)
+        self.__button_min.config(command=self.min_button_handler)
+        self.__button_max.config(command=self.max_button_handler)
         self.__first_loop = 1
+        self.__concentration_measured_min = 0
+        self.__concentration_measured_max = 1000
 
     @typechecked
     def next_button_handler(self) -> None: 
@@ -64,5 +70,13 @@ class App(tk.Tk) :
             self.__data = Data(self.__settings.get_com(), self.__settings.get_baudrate())
             self.__first_loop = 0
         self.__concentration_mesured = self.__data.get_concentration() 
-        self.__concentration.set_concentration(self.__concentration_mesured)
-        self.after(100, self.submit_button_handler)
+        self.__concentration.set_concentration(self.__concentration_mesured, self.__concentration_measured_min, self.__concentration_measured_max)
+        self.after(1000, self.submit_button_handler)
+
+    @typechecked
+    def min_button_handler(self) -> None:
+        self.__concentration_measured_min = self.__data.get_concentration()
+
+    @typechecked
+    def max_button_handler(self) -> None:
+        self.__concentration_measured_max = self.__data.get_concentration()

@@ -28,12 +28,30 @@ class Concentration(tk.Frame) :
         self.configure(background='#111111')
         self.__frame = tk.Frame(self)
         self.__frame.config(background='#111111')
-        self.__label = tk.Label(self.__frame, text= "The concentration in ethanol is : ", bg= '#111111', fg='#343434', font=("Helvetica", 15))
+        self.__label = tk.Label(self.__frame, text= "The concentration in ethanol is : ", bg= '#111111', fg='#7A7A7A', font=("Helvetica", 15))
         self.__value = tk.Label(self.__frame, bg= '#111111', fg='#7A7A7A', font=("Helvetica", 40))
         self.__canvas = Canvas(self.__frame, width=300, height=150, background='#111111',highlightthickness=0)
+        self.__form_minmax = tk.Frame(self)
+        self.__button_min = tk.Button(self.__form_minmax,
+                            text='Set Min',
+                            bg = '#111111',
+                            borderwidth=0,
+                            highlightthickness=0,
+                            activebackground= '#111111',
+                            fg="#7A7A7A")
+        self.__button_max = tk.Button(self.__form_minmax,
+                            text='Set Max',
+                            bg = '#111111',
+                            borderwidth=0,
+                            highlightthickness=0,
+                            activebackground= '#111111',
+                            fg="#7A7A7A")
         self.__canvas.pack()    
         self.__label.pack()
         self.__value.pack()
+        self.__form_minmax.pack(side='bottom', expand=True)
+        self.__button_min.pack(side="left")
+        self.__button_max.pack(side="right")
         self.__frame.pack(expand=True)
 
     @typechecked
@@ -41,8 +59,8 @@ class Concentration(tk.Frame) :
         return self.__value
 
     @typechecked
-    def set_concentration(self, concentration_measured : int)-> None: 
-        percentage = (concentration_measured - 520)*100/80
+    def set_concentration(self, concentration_measured : int, min : int, max : int )-> None: 
+        percentage = (concentration_measured - min)*100/(max - min)
         self.__value.config(text=concentration_measured)
         self.__color = Color.choose_color(percentage)
         self.__canvas.delete("all")
@@ -58,3 +76,12 @@ class Concentration(tk.Frame) :
         self.__canvas.create_arc(coord1, start=start_angle, extent=end_angle, fill=self.__color, outline="")
         self.__canvas.create_arc(coord2, start=start_angle, extent=end_angle, fill="#111111",outline="")
         self.__canvas.create_arc(coord3, start=-variable_angle, extent=end_angle, fill="#111111",outline="")
+
+    @typechecked
+    def get_min_button(self) -> tk.Button : 
+        return self.__button_min
+    
+    @typechecked
+    def get_max_button(self) -> tk.Button : 
+        return self.__button_max
+    

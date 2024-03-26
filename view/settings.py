@@ -13,13 +13,13 @@ class Settings(tk.Frame):
         
         self.__frame_baudrate = tk.Frame(self)
         self.__frame_baudrate.configure(background="#111111")
-        self.__label_baudrate = tk.Label(self.__frame_baudrate, text="BaudRate", bg='#111111', fg='#343434', font=("Helvetica", 15))
-        self.__entry_baudrate = tk.Entry(self.__frame_baudrate, font=("Helvetica",15), justify="center", width="8", bg= "#343434", borderwidth=0, fg= "#111111")
+        self.__label_baudrate = tk.Label(self.__frame_baudrate, text="BaudRate", bg='#111111', fg='#7A7A7A', font=("Helvetica", 15))
+        self.__entry_baudrate = tk.Entry(self.__frame_baudrate, font=("Helvetica",15), justify="center", width="8", bg= "#7A7A7A", borderwidth=0, fg= "#111111")
 
         self.__frame_COM = tk.Frame(self)
         self.__frame_COM.configure(background="#111111")
-        self.__label_COM = tk.Label(self.__frame_COM, text="COM", bg='#111111', fg='#343434', font=("Helvetica", 15))
-        self.__entry_COM = tk.Entry(self.__frame_COM, font=("Helvetica",15), justify="center", width="8", bg= "#343434", borderwidth=0, fg= "#111111")
+        self.__label_COM = tk.Label(self.__frame_COM, text="COM", bg='#111111', fg='#7A7A7A', font=("Helvetica", 15))
+        self.__entry_COM = tk.Entry(self.__frame_COM, font=("Helvetica",15), justify="center", width="8", bg= "#7A7A7A", borderwidth=0, fg= "#111111")
 
         self.__button_submit = tk.Button(self.__frame,
                                     image = self.__loadimage,
