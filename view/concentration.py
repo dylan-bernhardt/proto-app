@@ -28,7 +28,7 @@ class Concentration(tk.Frame) :
         self.configure(background='#111111')
         self.__frame = tk.Frame(self)
         self.__frame.config(background='#111111')
-        self.__label = tk.Label(self.__frame, text= "The concentration in ethanol is : ", bg= '#111111', fg='#7A7A7A', font=("Helvetica", 15))
+        self.__label = tk.Label(self.__frame, text= "The concentration in water is : ", bg= '#111111', fg='#7A7A7A', font=("Helvetica", 15))
         self.__value = tk.Label(self.__frame, bg= '#111111', fg='#7A7A7A', font=("Helvetica", 40))
         self.__canvas = Canvas(self.__frame, width=300, height=150, background='#111111',highlightthickness=0)
         self.__form_minmax = tk.Frame(self)
@@ -61,7 +61,7 @@ class Concentration(tk.Frame) :
     @typechecked
     def set_concentration(self, concentration_measured : int, min : int, max : int )-> None: 
         percentage = (concentration_measured - min)*100/(max - min)
-        self.__value.config(text=percentage)
+        self.__value.config(text=str(100 if percentage > 100 else abs(round(percentage, 1))) + ' %')
         self.__color = Color.choose_color(percentage)
         self.__canvas.delete("all")
         variable_angle = percentage * 1.8

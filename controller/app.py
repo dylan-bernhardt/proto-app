@@ -70,8 +70,9 @@ class App(tk.Tk) :
             self.__data = Data(self.__settings.get_com(), self.__settings.get_baudrate())
             self.__first_loop = 0
         self.__concentration_mesured = self.__data.get_concentration() 
+        print(self.__concentration_mesured)
         self.__concentration.set_concentration(self.__concentration_mesured, self.__concentration_measured_min, self.__concentration_measured_max)
-        self.after(1000, self.submit_button_handler)
+        self.after(200, self.submit_button_handler)
 
     @typechecked
     def min_button_handler(self) -> None:
